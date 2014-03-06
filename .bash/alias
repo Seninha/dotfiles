@@ -1,0 +1,176 @@
+#!/bin/bash
+#
+# ~/.bash/alias
+# Manteined by Lucas de Sena <lucas.ta23@gmail.com>
+# Modificated on 02-02-2014
+#
+#
+#  WARNING:
+# ----------
+#
+# The command "saila" is an alias to the command "alias".
+#
+# Lines  that  begin whith  "saila"  are special  because they  do an alias to a
+# to a command that is already a alias.
+#
+# If you want to change  an alias to an alias,  check the original command alias
+# to get the desired behavior
+alias saila='alias'
+
+# OUTPUT IMPROVEMENT                                                         {{{
+################################################################################
+
+alias diff='colordiff'			# Diff cororlido (requires colordiff package)
+alias df='df -h'
+alias du='du -c -h'
+alias egrep='egrep --color=auto'	# Grep cororlido
+alias free='free -ht'			# Espaço legível a humanos
+
+## ls
+alias ls='ls --color=auto --group-directories-first --quoting-style=shell -Fh'
+      # colorido; pastas primeiro; aspas em espaço; mostra filetype; legível a humanos
+alias ll='ls -l'		# ls em lista
+alias lr='ls -R'               	# ls recursivo
+alias la='ls -A'		# ls listando todos
+alias ld='ll -d'		# ls para pasta
+alias llr='ls -lR'
+alias lla='ls -lA'
+
+#}}}
+
+# BEHAVIORAL IMPROVEMENT                                                     {{{
+################################################################################
+
+alias info='pinfo'			# Info page colorida
+saila grep='egrep'			# Grep cororlido
+alias more='less'			# More do bem
+alias nano='nano -w'			# Edição no nano sem cortar linhas
+alias pacman='yaourt'
+alias sudo='sudo '			# Sudo com suporte a alias ;-)
+alias tmux='unset TMUX && tmux'
+# }}}
+
+# FILE MANAGEMENT                                                            {{{
+################################################################################
+
+alias cp='cp -dRi'
+alias mv='mv -i'
+alias remove='rm -RiI'
+alias rm='echo -e "Esse comando não está disponível por razões de segurança.\nEm vez disso use o comando:\n      $ trash"'
+alias ln='ln -i'
+alias mkdir='mkdir -p -v'
+
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+
+# }}}
+
+# NEW COMMANDS                                                               {{{
+################################################################################
+
+alias nada='dd if=/dev/zero of=/dev/null'	# Does nothing
+alias traduzir='zztradutor'			# Perform translation
+alias view='vimpager '				# Page viewer
+
+function frase {
+	cat ~/.bash/brasil | tr '\n' '^' | sed -r '/%/s/%/\n/g' | sort -R | shuf -n 1 | sed -r 's/\^/\n/g' | cowsay -f tux
+}
+
+function hist {
+  a=$*
+  test $1 || a=^
+  for i in $a
+  do
+    history | sed -r 's/^[\t ]*[1234567890]+\*?[\t ]+(.*$)/\1/ ; $d' |  grep -E -- $i -
+  done
+}
+
+## Music and Audio management
+alias volume='alsamixer'
+alias lyric='lyvi'
+alias lyrics='lyvi'
+alias letra='lyvi'
+function mus {
+  ARGS=$(echo $* | sed -r 's/.[0123456789]+/-v &%/')
+  NUM=$#
+  if [[ $NUM > 0 ]] ; then
+    cmus-remote $ARGS
+  else
+    cmus
+  fi
+}
+
+## Development
+alias gcc='colorgcc'
+alias wgcc='i486-mingw32-gcc'
+function wcc-ansi {
+  args=$*
+  in=$(echo $args | sed -r "s/.* ([^ 	]*\.c).*/\1/")
+  flags=$(echo $args | sed -r "s/${in}//")
+  out=$(echo -n "$in" | sed -r 's/\.c$//')
+  wgcc -g -ansi -Wall $flags $in -o "${out}.exe"
+}
+function wcc {
+  args=$*
+  in=$(echo $args | sed -r "s/.* ([^ 	]*\.c).*/\1/")
+  flags=$(echo $args | sed -r "s/${in}//")
+  out=$(echo -n "$in" | sed -r 's/\.c$//')
+  wgcc -g -Wall $flags $in -o "${out}.exe"
+}
+function cc-ansi {
+  args=$*
+  in=$(echo $args | sed -r "s/.* ([^ 	]*\.c).*/\1/")
+  flags=$(echo $args | sed -r "s/${in}//")
+  out=$(echo -n "$in" | sed -r 's/\.c$//')
+  gcc -Og -ansi -Wall $flags $in -o $out
+}
+function cc {
+  args=$*
+  in=$(echo $args | sed -r "s/.* ([^ 	]*\.c).*/\1/")
+  flags=$(echo $args | sed -r "s/${in}//")
+  out=$(echo -n "$in" | sed -r 's/\.c$//')
+  gcc -Og -Wall $flags $in -o $out
+}
+
+## WINE and Emulation
+cmd () {
+	wine ~/.local/share/PyCmd/PyCmd.exe $*
+	reset
+}
+
+## Power
+alias poweroff='sudo poweroff'
+alias reboot='sudo reboot'
+saila desligar='poweroff'
+saila reiniciar='reboot'
+
+## Games
+alias tetris='vitetris'
+alias matrix='cmatrix'
+
+## Network
+alias wifi="wicd-curses"
+
+
+# }}}
+
+# SHORTCUTS                                                                  {{{
+################################################################################
+
+saila :p='pacman'
+saila :P='pacman'
+
+alias :q='exit'
+alias :Q='exit'
+
+alias :v='vim'
+alias :V='vim'
+
+saila :g='view'
+saila :G='view'
+
+saila enpt='traduzir en-pt '
+saila pten='traduzir pt-en '
+
+# }}}

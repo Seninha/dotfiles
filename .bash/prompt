@@ -1,0 +1,134 @@
+#!/bin/bash
+#
+# Last Change:  2014-01-25
+# Maintainer:   Lucas de Sena <lucas.ta23@gmail.com>
+# License:      This file is placed in public domain.
+
+
+################################################################################
+## 1.                                                          PROMPT_COMMAND ##
+################################################################################
+
+function success {
+ local exit=$?
+ if [[ $exit = 0 ]]
+ then
+   suc_collor="\e[1;34m"	#Azul
+   suc_value=
+ else
+   suc_collor="\e[1;41m"	#Vermelho
+   suc_value=" (${exit})"
+ fi
+}
+
+
+#function load_avg {
+#  AVG=$(calc -p "$(uptime | awk '{ print $8 }' | sed 's/,/./ ; s/,$//')*100")
+#  if [[ $AVG > 200 ]]
+#  then
+#    avg_color="\e[44m"	#Azul
+#  else
+#    avg_color="\e[41m"	#Vermelho
+#  fi
+#}
+
+function job_count {
+  totalJobs=$(jobs | wc -l)
+
+  JOBS=""
+  if [[ $totalJobs = 1 ]]; then			# Apenas jobs
+    JOBS=" ($totalJobs job)"
+  elif [[ $totalJobs > 1 ]]; then
+    JOBS=" ($totalJobs jobs)"
+  fi
+}
+
+function prompt_command {
+  success
+#  load_avg
+  job_count
+}
+
+################################################################################
+## 2.                                                                  PROMPT ##
+################################################################################
+
+bash_prompt() {
+
+
+#>> Cores
+
+local NONE="\[\e[0m\]" # Default term's fg color
+
+
+#>> Regular Colors
+local K="\[$(tput setaf 0)\]" # Black
+local R="\[$(tput setaf 1)\]" # Red
+local G="\[$(tput setaf 2)\]" # Green
+local Y="\[$(tput setaf 3)\]" # Yellow
+local B="\[$(tput setaf 4)\]" # Blue
+local M="\[$(tput setaf 5)\]" # Magenta
+local C="\[$(tput setaf 6)\]" # Cyan
+local W="\[$(tput setaf 7)\]" # White
+
+
+#>> Color Mode
+local BLD="\[$(tput bold)\]"
+local DIM="\[$(tput dim)\]"
+local SMU="\[$(tput smul)\]"
+local RMU="\[$(tput rmul)\]"
+local REV="\[$(tput rev)\]"
+local SMS="\[$(tput smso)\]"
+local RMS="\[$(tput rmso)\]"
+local SGR="\[$(tput sgr0)\]"
+
+
+#>> Background Colors
+local BGK="\[$(tput setb 0)\]"
+local BGR="\[$(tput setb 1)\]"
+local BGG="\[$(tput setb 2)\]"
+local BGY="\[$(tput setb 3)\]"
+local BGB="\[$(tput setb 4)\]"
+local BGM="\[$(tput setb 5)\]"
+local BGC="\[$(tput setb 6)\]"
+local BGW="\[$(tput setb 7)\]"
+
+
+#>> Used Colors
+local RED="${NONE}${BLD}${R}" # Red
+local BLU="${NONE}${BLD}${B}" # Blue
+local YELW="${NONE}${Y}"  # Yellow
+local SUC="\$(echo -ne \$suc_collor)"
+
+
+#>> Prompt Blocks
+local HOST="\u@\h"
+local TIME="\$(date +%H:%M)"
+local DIR="\w [\$(ls | wc -l) arquivos]"
+local CMD="\#\$"
+local JOBS="\$(echo \$JOBS)"
+local EXIT="\$suc_value"
+
+
+#> PROMPT SENSU STRICTO
+
+PROMPT_COMMAND=prompt_command
+
+PS1="\n\
+${RED}┌─[${TIME}]──[\
+${NONE}${SUC}${HOST}${EXIT}\
+${RED}] \
+${YELW}${DIR}\n\
+${RED}└─€\
+${NONE}\$JOBS ${CMD} "
+
+PS2="  ${RED}€       ${NONE}"
+}
+
+bash_prompt
+
+unset suc_collor
+unset suc_value
+unset JOBS
+unset bash_prompt
+

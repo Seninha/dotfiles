@@ -1,0 +1,70 @@
+#!/bin/bash
+
+bash_prompt() {
+
+#
+## Cores
+
+local NONE="\[\e[0m\]" # Default term's fg color
+
+ # regular colors
+local K="\[\e[0;30m\]" # Black
+local R="\[\e[0;31m\]" # Red
+local G="\[\e[0;32m\]" # Green
+local Y="\[\e[0;33m\]" # Yellow
+local B="\[\e[0;34m\]" # Blue
+local M="\[\e[0;35m\]" # Magenta
+local C="\[\e[0;36m\]" # Cyan
+local W="\[\e[0;37m\]" # White
+
+ # emphasized (bolded) colors
+local EMK="\[\e[1;30m\]"
+local EMR="\[\e[1;31m\]"
+local EMG="\[\e[1;32m\]"
+local EMY="\[\e[1;33m\]"
+local EMB="\[\e[1;34m\]"
+local EMM="\[\e[1;35m\]"
+local EMC="\[\e[1;36m\]"
+local EMW="\[\e[1;37m\]"
+
+ # background colors
+local BGK="\[\e[40m\]"
+local BGR="\[\e[41m\]"
+local BGG="\[\e[42m\]"
+local BGY="\[\e[43m\]"
+local BGB="\[\e[44m\]"
+local BGM="\[\e[45m\]"
+local BGC="\[\e[46m\]"
+local BGW="\[\e[47m\]"
+
+ # Cores usadas
+local RED=$EMR # Red
+local BLU=$EMB # Blue
+local YELW=$Y  # Yellow
+
+
+#
+## BLOCOS
+
+local HOST="\u@\h"
+local TIME="\$(date +%H:%M)"
+local DIR="\w [\$(ls | wc -l) arquivos]"
+local CMD="\#\$"
+
+
+#
+## PROMPT SENSU STRICTO
+
+PS1="\n\
+${RED}┌─[${TIME}]──[\
+${BLU}${HOST}\
+${RED}] \
+${YELW}${DIR}\n\
+${RED}└─> \
+${NONE}${CMD} "
+
+}
+
+bash_prompt
+
+unset bash_prompt
