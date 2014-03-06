@@ -1,134 +1,96 @@
 #! /bin/bash
 #
 # ~/.bashrc 
-# Last Change:  2014-01-25
-# Maintainer:   Lucas de Sena <lucas.ta23@gmail.com>
-# License:      This file is placed in public domain.
+#
 
-
-#>> If not running interactively, don't do anything
+# If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-################################################################################
-## 1.                                                           SHELL OPTIONS ##
-################################################################################
+# 1. Shell Options
+# ==============================================================================
 
-#>> Comando cd e "Pathname Expansion"
+# CD command and Pathname Expansion
 
-shopt -s autocd		# Caso o comando for um diretório, entra nele
-			#   usando cd.
+shopt -s autocd		# Cd if command is a directory
+shopt -s cdable_vars	# Accept varname as cd argument
+shopt -s cdspell	# Automatically corrects small errors in dir name
+shopt -s direxpand	# Expand dir names
+shopt -s dotglob	# Include dotfiles in pathname expansion
+shopt -s extglob	# Extended pathname expansion
+shopt -s globstar	# The pattern ** matches zero or more directories
+shopt -s nocaseglob	# Case-insensitive pathname expansion.
 
-shopt -s cdable_vars	# Se o argumento de cd não for um diretório,
-			#   é assumido que é o nome de uma vriável cujo
-			#   valor é um diretório.
+# History
 
-shopt -s cdspell	# Pequenos erros na escrita do diretório em cd
-			#   serão corrigidos.
+shopt -s cmdhist	# Salve multiple-line commands in the same history entry
+shopt -s lithist	# Separe multiple-linhas entry by newline, instead of semicollon
+shopt -s histappend	# Históry is appended to the histfile rather than overwriting it
+shopt -s histverify	# History Substitution is loaded in prompt allowing further modifications
 
-shopt -s direxpand	# Realiza expansões em nomes de diretórios.
+# MISC
 
-shopt -s dotglob	# Inlui arquivos iniciador com '.' em resultado de
-			#   Pathname Expansion.
-
-shopt -s extglob	# Pathname Expansion estendido.
-
-shopt -s globstar	# Asteriscos duplos (**) expandem para zero ou mais
-			#   diretórios durante Pathname Expansion
-
-shopt -s nocaseglob	# Case-insensitive Pathname Expansion.
-
-
-#>> Hstórico e "History Substitution"
-
-shopt -s cmdhist	# Salva comandos de múltiplas linhas em uma única
-			#   linha no histórico.
-
-shopt -s lithist	# Se cmdhist estiver habilitado, multiplas linhas são
-			#   salvas no histórico separdas por quebra de linha,
-			#   em vez de serem separadas por ponto e vírgula.
-
-shopt -s histappend	# Histórico é adicionado ao arquivo de histórico em
-			#   vez de substituir seu conteúdo. Isso permite que
-			#   o histórico de vários terminais aberto ao mesmo
-			#   tempo seja salvo em um único arquivo
-
-shopt -s histverify	# "History Substitution" não é executada automaticamente,
-			#   mas é carregada no prompt para o usuário poder
-			#   editá-la.
+shopt -s checkjobs	# A second attempt to exit shell finishes jobs
+shopt -s checkwinsize	# Checks the window size after each comman
+shopt -s xpg_echo	# The echo command uses -e option by default
 
 
-#>> MISC
+# 2. Tmux
+# ==============================================================================
 
-shopt -s checkjobs	# Estado de jobs será listado ao sair do sell,
-			#   jobs e shell serão finalizados numa segunda
-			#   tentativa de saída do shell.
+if which tmux 2>&1 >/dev/null; then
+	# if no session is started, start a new session
+	test -z ${TMUX} && tmux && exit
+	
+	# # when quitting tmux, try to attach
+	while test -z ${TMUX}; do
+		tmux attach || break
+	done
+fi
 
-shopt -s checkwinsize	# Checa tamanho da janela após cada comando.
 
-shopt -s xpg_echo	# Usa automaticamente a opção -e no comando "echo".
-			#   desative esse comportamento usando a opção -E
-
-
-################################################################################
-## 2.                                                                   TMUX  ##
-################################################################################
-
- if which tmux 2>&1 >/dev/null; then
- 	# if no session is started, start a new session
- 	test -z ${TMUX} && tmux && exit
- 	
- 	# # when quitting tmux, try to attach
- 	while test -z ${TMUX}; do
- 		tmux attach || break
- 	done
- fi
-
-################################################################################
-## 3.                                                                 PROMPT  ##
-################################################################################
+# 3. Prompt
+# ==============================================================================
 
 [[ -f ~/.bash/prompt ]] && . ~/.bash/prompt
 
-# Exêmplo:
+# Example:
 #
-# ┌─[10:30]──[lucas@B1] pasta/atual [23 arquivos]
+# ┌─[10:30]──[lucas@B1] ~/current/dir [23 arquivos]
 # └─> 1$
 
-################################################################################
-## 4.                                                              VARIÁVEIS  ##
-################################################################################
 
-PATH="~/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/java/bin/:./"
+# 4. Environment Variables
+# ==============================================================================
+
+export PATH="~/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/java/bin/:./"
 export LD_LIBRARY_PATH=./bin/:~/.local/share/Steam/SteamApps/common/GarrysMod/garrysmod/bin/:/opt/java/jre/lib/i386/
 
-export PAGER="most -s"			# Man pages coloridas
-export EDITOR="/usr/bin/vim"		# Editor padrão
-export WWW_HOME="www.google.com.br"	# Homepage
+export PAGER="most -s"
+export EDITOR="/usr/bin/vim"
+export WWW_HOME="seninha.net"
 
 export WINEDEBUG='fixme-all'
 export GCC_COLORS
 
 
-################################################################################
-## 5.                                                        ALIAS E FUNÇÕES  ##
-################################################################################
+# 5. Alias and Functions
+# ==============================================================================
 
 [[ -f ~/.bash/alias ]] && . ~/.bash/alias
 
 
-################################################################################
-## 6.                               PROGRAMAS EXECUTADOS NO INICIO DA SESSAO  ##
-################################################################################
+# 6. Programs Run at Login Time
+# ==============================================================================
 
-## MOSTRA ROTINA
+# Show daily routine
 view ~/.config/elos/20*/10*
 clear
 
-## INSTALAÇÃO DAS FUNCOES ZZ (www.funcoeszz.net)
+# Funções ZZ (www.funcoeszz.net)
 export ZZOFF=""  # desligue funcoes indesejadas
 export ZZPATH="/usr/bin/funcoeszz"  # script
 source "$ZZPATH"
 
-## MOSTRA FRASE ALEATÓRIA MAROTONA
+# Show randon awesome frase
 frase
 
