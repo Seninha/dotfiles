@@ -1,10 +1,20 @@
 #! /bin/bash
 #
 # ~/.bashrc 
+
+# README:
+# ==============================================================================
+#
+# This .bashrc requires that two other bash scripts must be located in your home
+# directory. These files are:
+#
+#   · ".bash_alias" - This file contains command alias.
+#   · ".bash_prompt" - This file generates the prompt.
 #
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+
 
 # 1. Shell Options
 # ==============================================================================
@@ -51,7 +61,7 @@ fi
 # 3. Prompt
 # ==============================================================================
 
-[[ -f ~/.bash/prompt ]] && . ~/.bash/prompt
+[[ -f ~/.bash_prompt ]] && . ~/.bash_prompt
 
 # Example:
 #
@@ -76,11 +86,15 @@ export GCC_COLORS
 # 5. Alias and Functions
 # ==============================================================================
 
-[[ -f ~/.bash/alias ]] && . ~/.bash/alias
+[[ -f ~/.bash_alias ]] && . ~/.bash_alias
 
 
 # 6. Programs Run at Login Time
 # ==============================================================================
+
+#
+# The folowing commands may be a alias generated in the previous section!
+#
 
 # Show daily routine
 view ~/.config/elos/20*/10*
@@ -91,6 +105,7 @@ export ZZOFF=""  # desligue funcoes indesejadas
 export ZZPATH="/usr/bin/funcoeszz"  # script
 source "$ZZPATH"
 
-# Show randon awesome frase
-frase
+# Show a random awesome frase
+fortune 90% brasil 5% linux 5% linuxcookie | cowsay -f tux
+
 

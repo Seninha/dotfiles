@@ -1,0 +1,150 @@
+#!/bin/bash
+#
+# ~/.bash/prompt
+
+# README:
+# ==============================================================================
+#
+# This file creates a modular Prompt.  It is made with prompt blocks  defined in
+# section #3 and arranged in order to make a prompt.
+#
+# The prompt blocks  are made with color  blocks defined in section #2  and with
+# functions defined in section #1.
+#
+# The prompt itself is defined in section #4
+#
+
+
+# 1. Prompt Command
+# ==============================================================================
+
+# Defines prompt's color based on the success of the previous command
+function success {
+  local exit=$?
+  if [[ $exit = 0 ]]
+  then
+    suc_collor="\e[1;34m"	#Azul
+    suc_value=
+  else
+    suc_collor="\e[1;41m"	#Vermelho
+    suc_value=" (${exit})"
+  fi
+  }
+
+#function load_avg {
+#  AVG=$(calc -p "$(uptime | awk '{ print $8 }' | sed 's/,/./ ; s/,$//')*100")
+#  if [[ $AVG > 200 ]]
+#  then
+#    avg_color="\e[44m"	#Azul
+#  else
+#    avg_color="\e[41m"	#Vermelho
+#  fi
+#}
+
+# Show current jobs
+function job_count {
+  totalJobs=$(jobs | wc -l)
+
+  JOBS=""
+  if [[ $totalJobs = 1 ]]; then			# Apenas jobs
+    JOBS=" ($totalJobs job)"
+  elif [[ $totalJobs > 1 ]]; then
+    JOBS=" ($totalJobs jobs)"
+  fi
+  }
+
+# This command is executed before every prompt
+function prompt_command {
+  success
+  #load_avg
+  job_count
+  }
+
+export prompt_command
+
+
+# 2. Prompt Colors
+# ==============================================================================
+
+#
+# Uncomment the Blocks you will use and unset them in the end of the file.
+#
+
+NONE="\[\e[0m\]" # Default term's fg color
+
+# Regular Colors
+#K="\[$(tput setaf 0)\]" 	# Black
+R="\[$(tput setaf 1)\]" 	# Red
+#G="\[$(tput setaf 2)\]" 	# Green
+Y="\[$(tput setaf 3)\]" 	# Yellow
+B="\[$(tput setaf 4)\]" 	# Blue
+#M="\[$(tput setaf 5)\]" 	# Magenta
+#C="\[$(tput setaf 6)\]" 	# Cyan
+#W="\[$(tput setaf 7)\]" 	# White
+
+# Color Mode
+BLD="\[$(tput bold)\]"
+#DIM="\[$(tput dim)\]"
+#SMU="\[$(tput smul)\]"
+#RMU="\[$(tput rmul)\]"
+#REV="\[$(tput rev)\]"
+#SMS="\[$(tput smso)\]"
+#RMS="\[$(tput rmso)\]"
+#SGR="\[$(tput sgr0)\]"
+
+# Background Colors
+#BGK="\[$(tput setb 0)\]"
+#BGR="\[$(tput setb 1)\]"
+#BGG="\[$(tput setb 2)\]"
+#BGY="\[$(tput setb 3)\]"
+#BGB="\[$(tput setb 4)\]"
+#BGM="\[$(tput setb 5)\]"
+#BGC="\[$(tput setb 6)\]"
+#BGW="\[$(tput setb 7)\]"
+
+# Colors Combinations
+RED="${NONE}${BLD}${R}" # Red
+BLU="${NONE}${BLD}${B}" # Blue
+YELW="${NONE}${Y}"  # Yellow
+SUC="\$(echo -ne \$suc_collor)"
+
+
+# 3. Prompt Blocks
+# ==============================================================================
+
+HOST="\u@\h"
+TIME="\$(date +%H:%M)"
+DIR="\w [\$(ls | wc -l) arquivos]"
+CMD="\#\$"
+JOBS="\$(echo \$JOBS)"
+EXIT="\$suc_value"
+
+
+# 4. Prompt Itself
+# ==============================================================================
+
+export PROMPT_COMMAND=prompt_command
+
+export PS1="\n\
+${RED}┌─[${TIME}]──[\
+${NONE}${SUC}${HOST}${EXIT}\
+${RED}] \
+${YELW}${DIR}\n\
+${RED}└─€\
+${NONE}\$JOBS ${CMD} "
+
+export PS2="  ${RED}€       ${NONE}"
+
+# 5. Unseting Variables
+# ==============================================================================
+
+#
+# Variables that are not exported must be unseted here.
+#
+# If you use vim, you can do the following command to list the non-exported variables:
+#
+# :r ! cat % | sed -r "/^[ ]*[a-z_A-Z0-9]+=/\!d ; s/^ *([a-z_A-Z0-9]+)=.*/\1/" | tr '\n' ' ' 
+#
+
+unset suc_collor suc_value suc_collor suc_value totalJobs JOBS JOBS JOBS NONE R Y B BLD RED BLU YELW SUC HOST TIME DIR CMD JOBS EXIT 
+
