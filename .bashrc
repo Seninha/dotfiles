@@ -75,9 +75,9 @@ export PATH="~/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:
 export LD_LIBRARY_PATH="./bin/:~/.local/share/Steam/SteamApps/common/GarrysMod/garrysmod/bin/:/opt/java/jre/lib/i386/"
 
 # History
-export HISTSIZE=	# Infinite lines in history
-export HISTFILESIZE=	# Infinite history file size
-export HISTTIMEFORMAT	# Write timestamps
+export HISTSIZE=		# Infinite lines in history
+export HISTFILESIZE=		# Infinite history file size
+export HISTTIMEFORMAT=		# Write timestamps
 
 # Misc
 export PAGER="most -s"
