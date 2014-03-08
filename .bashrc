@@ -1,8 +1,6 @@
 #! /bin/bash
 #
 # ~/.bashrc 
-
-# README:
 # ==============================================================================
 #
 # This .bashrc requires that two other bash scripts must be located in your home
@@ -61,7 +59,7 @@ fi
 # 3. Prompt
 # ==============================================================================
 
-[[ -f ~/.bash_prompt ]] && . ~/.bash_prompt
+[[ -f ./.bash_prompt ]] && . ./.bash_prompt
 
 # Example:
 #
@@ -72,13 +70,21 @@ fi
 # 4. Environment Variables
 # ==============================================================================
 
+# PATHs
 export PATH="~/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/java/bin/:./"
-export LD_LIBRARY_PATH=./bin/:~/.local/share/Steam/SteamApps/common/GarrysMod/garrysmod/bin/:/opt/java/jre/lib/i386/
+export LD_LIBRARY_PATH="./bin/:~/.local/share/Steam/SteamApps/common/GarrysMod/garrysmod/bin/:/opt/java/jre/lib/i386/"
 
+# History
+export HISTSIZE=	# Infinite lines in history
+export HISTFILESIZE=	# Infinite history file size
+export HISTTIMEFORMAT	# Write timestamps
+
+# Misc
 export PAGER="most -s"
 export EDITOR="/usr/bin/vim"
-export WWW_HOME="seninha.net"
+export WWW_HOME="http://seninha.net"
 
+# DEV
 export WINEDEBUG='fixme-all'
 export GCC_COLORS
 
@@ -86,7 +92,7 @@ export GCC_COLORS
 # 5. Alias and Functions
 # ==============================================================================
 
-[[ -f ~/.bash_alias ]] && . ~/.bash_alias
+[[ -f ./.bash_alias ]] && . ./.bash_alias
 
 
 # 6. Programs Run at Login Time

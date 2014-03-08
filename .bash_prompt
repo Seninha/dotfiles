@@ -1,8 +1,6 @@
 #!/bin/bash
 #
 # ~/.bash/prompt
-
-# README:
 # ==============================================================================
 #
 # This file creates a modular Prompt.  It is made with prompt blocks  defined in

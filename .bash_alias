@@ -1,8 +1,6 @@
 #!/bin/bash
 #
 # ~/.bash/alias
-
-# README:
 # ==============================================================================
 #
 # The lines beginning with "alias" may end in a comment. These comments may have
