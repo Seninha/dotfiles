@@ -1,4 +1,4 @@
-Seninha's RC files
+Seninha's Config files
 ================================================================================
 
 Some config  files related to `bash` and `vim` that  provides a nice environment
@@ -30,3 +30,11 @@ File List
 | .vimrc        | Configuration for vim. It has a lot of stuff and plugins managed by[Vundle][]                                                      |
 
 [Vundle]: https://github.com/gmarik/Vundle.vim
+
+TODO
+----
+
+In a near future I will use `zsh` instead of `bash`. So there will be zsh config
+files in this repository!
+
+Even so the `bash` related files will continue to be maintained.
