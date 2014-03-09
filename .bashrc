@@ -3,11 +3,20 @@
 # ~/.bashrc 
 # ==============================================================================
 #
-# This .bashrc requires that two other bash scripts must be located in your home
-# directory. These files are:
+# WARNING!
+# --------
 #
-#   · ".bash_alias" - This file contains command alias.
-#   · ".bash_prompt" - This file generates the prompt.
+# This .bashrc is  highly vim-oriented and myself-oriented,  so if you don't use
+# vim and if you aren't me, you must edit this file
+#
+#
+# Required Files
+# --------------
+#
+# The following files must be located in the same dir as .bashrc:
+#
+#   * .bash_alias  - This file contains command alias.
+#   * .bash_prompt - This file generates the prompt.
 #
 
 # If not running interactively, don't do anything
@@ -42,21 +51,7 @@ shopt -s checkwinsize	# Checks the window size after each comman
 shopt -s xpg_echo	# The echo command uses -e option by default
 
 
-# 2. Tmux
-# ==============================================================================
-
-if which tmux 2>&1 >/dev/null; then
-	# if no session is started, start a new session
-	test -z ${TMUX} && tmux && exit
-	
-	# # when quitting tmux, try to attach
-	while test -z ${TMUX}; do
-		tmux attach || break
-	done
-fi
-
-
-# 3. Prompt
+# 2. Prompt
 # ==============================================================================
 
 [[ -f ./.bash_prompt ]] && . ./.bash_prompt
@@ -67,40 +62,59 @@ fi
 # └─> 1$
 
 
-# 4. Environment Variables
+# 3. Environment Variables
 # ==============================================================================
 
 # PATHs
-export PATH="~/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/java/bin/:./"
-export LD_LIBRARY_PATH="./bin/:~/.local/share/Steam/SteamApps/common/GarrysMod/garrysmod/bin/:/opt/java/jre/lib/i386/"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
+export PATH="$PATH:~/.bin:~/.local/bin"		# Personal bin dir
+export PATH="$PATH:/opt/java/bin"		# Java bin dir
+export PATH="$PATH:./"				# You can execute a command in current dir without prefixing "./"
+
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:~./bin:~/.local/lib"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:~/.local/share/Steam/SteamApps/common/GarrysMod/garrysmod/bin/" # Garry's Mod support
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/java/jre/lib/i386/"
 
 # History
-export HISTSIZE=		# Infinite lines in history
-export HISTFILESIZE=		# Infinite history file size
-export HISTTIMEFORMAT=		# Write timestamps
+export HISTSIZE=				# Infinite lines in history
+export HISTFILESIZE=				# Infinite history file size
+export HISTTIMEFORMAT=				# Write timestamps
 
-# Misc
-export PAGER="most -s"
+# Paging and Editing
+export PAGER="vimpager"
 export EDITOR="/usr/bin/vim"
-export WWW_HOME="http://seninha.net"
 
 # DEV
 export WINEDEBUG='fixme-all'
 export GCC_COLORS
 
+# Personal Variables
+export WWW_HOME="http://seninha.net"
 
-# 5. Alias and Functions
+
+# 4. Alias and Functions
 # ==============================================================================
 
 [[ -f ./.bash_alias ]] && . ./.bash_alias
 
 
-# 6. Programs Run at Login Time
+# 5. Programs Run at Login Time
 # ==============================================================================
+#
+# ¡The following commands may require a package to be installed!
+# ¡The following commands may be meaningless in a computer other than mine!
+#
 
-#
-# The folowing commands may be a alias generated in the previous section!
-#
+# Start tmux (requires tmux)
+if which tmux 2>&1 >/dev/null; then
+	# if no session is started, start a new session
+	test -z ${TMUX} && tmux && exit
+	
+	# # when quitting tmux, try to attach
+	while test -z ${TMUX}; do
+		tmux attach || break
+	done
+fi
 
 # Show daily routine
 view ~/.config/elos/20*/10*

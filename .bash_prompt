@@ -21,10 +21,10 @@ function success {
   local exit=$?
   if [[ $exit = 0 ]]
   then
-    suc_collor="\e[1;34m"	#Azul
+    suc_collor="\e[1;34m"	# blue
     suc_value=
   else
-    suc_collor="\e[1;41m"	#Vermelho
+    suc_collor="\e[1;41m"	# red
     suc_value=" (${exit})"
   fi
   }
@@ -51,11 +51,68 @@ function job_count {
   fi
   }
 
+# Show current git branch and git branch status
+function git_prompt {
+	git status &> /dev/null
+
+	if [[ $? = 128 ]] ; then
+		git_repo=0
+	else
+		git_repo=1
+	fi
+
+	if [[ $git_repo = 1 ]] ; then
+		GIT=
+		git_branch=
+		git_status=
+		git_remote=
+		git_color=
+		git_count=
+
+		git_branch=$(git status 2> /dev/null | grep -i '^on branch' | cut -d' ' -f3-)
+
+		git_status="staged"
+		git status | grep -i '^nothing to commit'  &> /dev/null && git_status="commited"
+		git status | grep -i '^changes not staged' &> /dev/null && git_status="modified"
+		git status | grep -i '^untracked files'    &> /dev/null && git_status="modified"
+
+		git status | head -4 | grep -i 'ahead'     &> /dev/null && git_remote="→"
+		git status | head -4 | grep -i 'diverged'  &> /dev/null && git_remote="<"
+		git status | head -4 | grep -i 'behind'    &> /dev/null && git_remote="←"
+
+		[[ $git_status = "modified" ]] && git_color="\e[1;31m"
+		[[ $git_status = "commited" ]] && git_color="\e[1;32m"
+		[[ $git_status = "staged" ]]   && git_color="\e[1;33m"
+
+		if [[ $git_branch ]] ; then
+			if [[ $git_remote ]] ; then
+				GIT="${git_color}(git: ${git_branch} ${git_remote})${NONE}"
+				git_count=$(( ${#git_remote} + ${#git_branch} ))
+				git_count=$(( git_count + 8 ))
+			else 
+				GIT="${git_color}(git: ${git_branch})${NONE}"
+				git_count=${#git_branch}
+				git_count=$(( git_count + 7 ))
+			fi
+		else
+			GIT="${git_color}(git)${NONE}"
+			git_count=6
+		fi
+
+		GIT="\e[${COLUMNS}C\e[${git_count}D${GIT}"
+
+	else
+		GIT=
+	fi
+}
+
+
 # This command is executed before every prompt
 function prompt_command {
   success
   #load_avg
   job_count
+  git_prompt
   }
 
 export prompt_command
@@ -104,7 +161,6 @@ BLD="\[$(tput bold)\]"
 RED="${NONE}${BLD}${R}" # Red
 BLU="${NONE}${BLD}${B}" # Blue
 YELW="${NONE}${Y}"  # Yellow
-SUC="\$(echo -ne \$suc_collor)"
 
 
 # 3. Prompt Blocks
@@ -115,7 +171,9 @@ TIME="\$(date +%H:%M)"
 DIR="\w [\$(ls | wc -l) arquivos]"
 CMD="\#\$"
 JOBS="\$(echo \$JOBS)"
+GIT="\$(echo -ne \$GIT)"
 EXIT="\$suc_value"
+SUC="\$(echo -ne \$suc_collor)"
 
 
 # 4. Prompt Itself
@@ -127,7 +185,7 @@ export PS1="\n\
 ${RED}┌─[${TIME}]──[\
 ${NONE}${SUC}${HOST}${EXIT}\
 ${RED}] \
-${YELW}${DIR}\n\
+${YELW}${DIR}${GIT}\n\
 ${RED}└─€\
 ${NONE}\$JOBS ${CMD} "
 
