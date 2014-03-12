@@ -19,15 +19,14 @@
 #   * .bash_prompt - This file generates the prompt.
 #
 
-# If not running interactively, don't do anything
+## If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 
 # 1. Shell Options
 # ==============================================================================
 
-# CD command and Pathname Expansion
-
+## CD command and Pathname Expansion
 shopt -s autocd		# Cd if command is a directory
 shopt -s cdable_vars	# Accept varname as cd argument
 shopt -s cdspell	# Automatically corrects small errors in dir name
@@ -37,15 +36,13 @@ shopt -s extglob	# Extended pathname expansion
 shopt -s globstar	# The pattern ** matches zero or more directories
 shopt -s nocaseglob	# Case-insensitive pathname expansion.
 
-# History
-
+## History
 shopt -s cmdhist	# Salve multiple-line commands in the same history entry
 shopt -s lithist	# Separe multiple-linhas entry by newline, instead of semicollon
 shopt -s histappend	# Históry is appended to the histfile rather than overwriting it
 shopt -s histverify	# History Substitution is loaded in prompt allowing further modifications
 
-# MISC
-
+## MISC
 shopt -s checkjobs	# A second attempt to exit shell finishes jobs
 shopt -s checkwinsize	# Checks the window size after each comman
 shopt -s xpg_echo	# The echo command uses -e option by default
@@ -56,7 +53,7 @@ shopt -s xpg_echo	# The echo command uses -e option by default
 
 [[ -f ./.bash_prompt ]] && . ./.bash_prompt
 
-# Example:
+## Example:
 #
 # ┌─[10:30]──[lucas@B1] ~/current/dir [23 arquivos]
 # └─> 1$
@@ -65,30 +62,30 @@ shopt -s xpg_echo	# The echo command uses -e option by default
 # 3. Environment Variables
 # ==============================================================================
 
-# PATHs
+## PATHs
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
-export PATH="$PATH:~/.bin:~/.local/bin"		# Personal bin dir
+export PATH="$PATH:~/bin:~/.local/bin"		# Personal bin dir
 export PATH="$PATH:/opt/java/bin"		# Java bin dir
 export PATH="$PATH:./"				# You can execute a command in current dir without prefixing "./"
 
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:~./bin:~/.local/lib"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:~/bin:~/.local/lib"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:~/.local/share/Steam/SteamApps/common/GarrysMod/garrysmod/bin/" # Garry's Mod support
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/java/jre/lib/i386/"
 
-# History
+## History
 export HISTSIZE=				# Infinite lines in history
 export HISTFILESIZE=				# Infinite history file size
 export HISTTIMEFORMAT=				# Write timestamps
 
-# Paging and Editing
+## Paging and Editing
 export PAGER="vimpager"
 export EDITOR="/usr/bin/vim"
 
-# DEV
+## DEV
 export WINEDEBUG='fixme-all'
 export GCC_COLORS
 
-# Personal Variables
+## Personal Variables
 export WWW_HOME="http://seninha.net"
 
 
@@ -105,7 +102,7 @@ export WWW_HOME="http://seninha.net"
 # ¡The following commands may be meaningless in a computer other than mine!
 #
 
-# Start tmux (requires tmux)
+## Start tmux (requires tmux)
 if which tmux 2>&1 >/dev/null; then
 	# if no session is started, start a new session
 	test -z ${TMUX} && tmux && exit
@@ -116,16 +113,16 @@ if which tmux 2>&1 >/dev/null; then
 	done
 fi
 
-# Show daily routine
+## Show daily routine
 view ~/.config/elos/20*/10*
 clear
 
-# Funções ZZ (www.funcoeszz.net)
+## Funções ZZ (www.funcoeszz.net)
 export ZZOFF=""  # desligue funcoes indesejadas
 export ZZPATH="/usr/bin/funcoeszz"  # script
 source "$ZZPATH"
 
-# Show a random awesome frase
+## Show a random awesome frase
 fortune 90% brasil 5% linux 5% linuxcookie | cowsay -f tux
 
 

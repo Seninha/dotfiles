@@ -1,30 +1,24 @@
 #!/bin/bash
 #
-# ~/.bash/prompt
+# .bash_prompt
 # ==============================================================================
 #
-# This file creates a modular Prompt.  It is made with prompt blocks  defined in
-# section #3 and arranged in order to make a prompt.
-#
-# The prompt blocks  are made with color  blocks defined in section #2  and with
-# functions defined in section #1.
-#
-# The prompt itself is defined in section #4
+# This file creates a modular Prompt made with "blocks" of variables.
 #
 
 
 # 1. Prompt Command
 # ==============================================================================
 
-# Defines prompt's color based on the success of the previous command
+## Defines prompt's color based on the success of the previous command
 function success {
   local exit=$?
   if [[ $exit = 0 ]]
   then
-    suc_collor="\e[1;34m"	# blue
+    suc_collor="[1;34m"	# blue
     suc_value=
   else
-    suc_collor="\e[1;41m"	# red
+    suc_collor="[1;41m"	# red
     suc_value=" (${exit})"
   fi
   }
@@ -33,13 +27,13 @@ function success {
 #  AVG=$(calc -p "$(uptime | awk '{ print $8 }' | sed 's/,/./ ; s/,$//')*100")
 #  if [[ $AVG > 200 ]]
 #  then
-#    avg_color="\e[44m"	#Azul
+#    avg_color="[44m"	#Azul
 #  else
-#    avg_color="\e[41m"	#Vermelho
+#    avg_color="[41m"	#Vermelho
 #  fi
 #}
 
-# Show current jobs
+## Show current jobs
 function job_count {
   totalJobs=$(jobs | wc -l)
 
@@ -51,7 +45,7 @@ function job_count {
   fi
   }
 
-# Show current git branch and git branch status
+## Show current git branch and git branch status
 function git_prompt {
 	git status &> /dev/null
 
@@ -80,12 +74,12 @@ function git_prompt {
 		git status | head -4 | grep -i 'diverged'  &> /dev/null && git_remote="<"
 		git status | head -4 | grep -i 'behind'    &> /dev/null && git_remote="←"
 
-		[[ $git_status = "modified" ]] && git_color="\e[1;31m"
-		[[ $git_status = "commited" ]] && git_color="\e[1;32m"
-		[[ $git_status = "staged" ]]   && git_color="\e[1;33m"
+		[[ $git_status = "modified" ]] && git_color="[1;31m"
+		[[ $git_status = "commited" ]] && git_color="[1;32m"
+		[[ $git_status = "staged" ]]   && git_color="[1;33m"
 
-		if [[ $git_branch ]] ; then
-			if [[ $git_remote ]] ; then
+		if [[ -n $git_branch ]] ; then
+			if [[ -n $git_remote ]] ; then
 				GIT="${git_color}(git: ${git_branch} ${git_remote})${NONE}"
 				git_count=$(( ${#git_remote} + ${#git_branch} ))
 				git_count=$(( git_count + 8 ))
@@ -99,7 +93,7 @@ function git_prompt {
 			git_count=6
 		fi
 
-		GIT="\e[${COLUMNS}C\e[${git_count}D${GIT}"
+		GIT="[${COLUMNS}C\e[${git_count}D${GIT}"
 
 	else
 		GIT=
@@ -107,7 +101,7 @@ function git_prompt {
 }
 
 
-# This command is executed before every prompt
+## This command is executed before every prompt
 function prompt_command {
   success
   #load_avg
@@ -118,16 +112,16 @@ function prompt_command {
 export prompt_command
 
 
-# 2. Prompt Colors
+# 2. Prompt Colors Blocks
 # ==============================================================================
 
 #
 # Uncomment the Blocks you will use and unset them in the end of the file.
 #
 
-NONE="\[\e[0m\]" # Default term's fg color
+NONE="\[[0m\]" # Default term's fg color
 
-# Regular Colors
+## Regular Colors
 #K="\[$(tput setaf 0)\]" 	# Black
 R="\[$(tput setaf 1)\]" 	# Red
 #G="\[$(tput setaf 2)\]" 	# Green
@@ -137,27 +131,27 @@ B="\[$(tput setaf 4)\]" 	# Blue
 #C="\[$(tput setaf 6)\]" 	# Cyan
 #W="\[$(tput setaf 7)\]" 	# White
 
-# Color Mode
-BLD="\[$(tput bold)\]"
-#DIM="\[$(tput dim)\]"
-#SMU="\[$(tput smul)\]"
-#RMU="\[$(tput rmul)\]"
-#REV="\[$(tput rev)\]"
-#SMS="\[$(tput smso)\]"
-#RMS="\[$(tput rmso)\]"
-#SGR="\[$(tput sgr0)\]"
+## Color Mode
+BLD="\[$(tput bold)\]"		# Bold
+#DIM="\[$(tput dim)\]"		# Dim
+#SMU="\[$(tput smul)\]"		# Smul
+#RMU="\[$(tput rmul)\]"		# Rmul
+#REV="\[$(tput rev)\]"		# Reverse
+#SMS="\[$(tput smso)\]"		# Smso
+#RMS="\[$(tput rmso)\]"		# Rmso
+#SGR="\[$(tput sgr0)\]"		# Sgr
 
-# Background Colors
-#BGK="\[$(tput setb 0)\]"
-#BGR="\[$(tput setb 1)\]"
-#BGG="\[$(tput setb 2)\]"
-#BGY="\[$(tput setb 3)\]"
-#BGB="\[$(tput setb 4)\]"
-#BGM="\[$(tput setb 5)\]"
-#BGC="\[$(tput setb 6)\]"
-#BGW="\[$(tput setb 7)\]"
+## Background Colors
+#BGK="\[$(tput setb 0)\]"	# Black
+#BGR="\[$(tput setb 1)\]"	# Red
+#BGG="\[$(tput setb 2)\]"	# Green
+#BGY="\[$(tput setb 3)\]"	# Yellow
+#BGB="\[$(tput setb 4)\]"	# Blue
+#BGM="\[$(tput setb 5)\]"	# Magenta
+#BGC="\[$(tput setb 6)\]"	# Cyan
+#BGW="\[$(tput setb 7)\]"	# White
 
-# Colors Combinations
+## Colors Combinations
 RED="${NONE}${BLD}${R}" # Red
 BLU="${NONE}${BLD}${B}" # Blue
 YELW="${NONE}${Y}"  # Yellow
@@ -166,6 +160,11 @@ YELW="${NONE}${Y}"  # Yellow
 # 3. Prompt Blocks
 # ==============================================================================
 
+
+## Colors Combinations
+RED="${NONE}${BLD}${R}" # Red
+BLU="${NONE}${BLD}${B}" # Blue
+YELW="${NONE}${Y}"  # Yellow
 HOST="\u@\h"
 TIME="\$(date +%H:%M)"
 DIR="\w [\$(ls | wc -l) arquivos]"
@@ -181,13 +180,13 @@ SUC="\$(echo -ne \$suc_collor)"
 
 export PROMPT_COMMAND=prompt_command
 
-export PS1="\n\
+export PS1="
 ${RED}┌─[${TIME}]──[\
 ${NONE}${SUC}${HOST}${EXIT}\
 ${RED}] \
-${YELW}${DIR}${GIT}\n\
+${YELW}${DIR}${GIT}
 ${RED}└─€\
-${NONE}\$JOBS ${CMD} "
+${NONE}${JOBS} ${CMD} "
 
 export PS2="  ${RED}€       ${NONE}"
 
@@ -202,5 +201,6 @@ export PS2="  ${RED}€       ${NONE}"
 # :r ! cat % | sed -r "/^[ ]*[a-z_A-Z0-9]+=/\!d ; s/^ *([a-z_A-Z0-9]+)=.*/\1/" | tr '\n' ' ' 
 #
 
-unset suc_collor suc_value suc_collor suc_value totalJobs JOBS JOBS JOBS NONE R Y B BLD RED BLU YELW SUC HOST TIME DIR CMD JOBS EXIT 
+unset suc_collor suc_value suc_collor suc_value totalJobs JOBS JOBS JOBS NONE \
+	R Y B BLD RED BLU YELW SUC HOST TIME DIR CMD JOBS EXIT 
 

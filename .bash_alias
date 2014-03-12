@@ -1,10 +1,7 @@
 #!/bin/bash
 #
-# ~/.bash/alias
+# .bash_alias
 # ==============================================================================
-#
-# Comment Flags
-# -------------
 #
 # A comment may contain the following strings that flags the commented line:
 #
@@ -25,7 +22,7 @@ alias du='du -c -h'				# Human redable
 alias egrep='egrep --color=auto'		# Colored egrep
 alias free='free -ht'				# Human redable
 
-# ls
+## ls
 alias ls='ls \
 	--color=auto \
 	--group-directories-first \
@@ -112,13 +109,13 @@ function cc {					# _RECURSIVE_
 # 5. New commands
 # ==============================================================================
 
-# Translation commands
+## Translation commands
 alias traduzir='zztradutor'			# _DEPEND_(funcoeszz)
 alias enpt='traduzir en-pt '			# _RECURSIVE_
 alias pten='traduzir pt-en '			# _RECURSIVE_
 
 
-# Music and Audio management
+## Music and Audio management
 alias volume='alsamixer'			# _DEPEND_(alsa-utils)
 alias lyric='lyvi'				# _DEPEND_(lyvi)
 alias lyrics='lyvi'				# _DEPEND_(lyvi)
@@ -134,32 +131,35 @@ function mus {					# _DEPEND_(cmus)
   }
 
 
-# Wine and Emulation
+## Wine and Emulation
 cmd () {
 	wine ~/.local/share/PyCmd/PyCmd.exe $*
 	reset
-}
-	# This function depends on the command wine and on a win32 programm
+}	# This function depends on the command wine and on a win32 programm
 	# named "PyCmd.exe". You must remove these lines if you haven't it.
+	#
+	# I recomend you install "PyCmd.exe", because it is a smart command
+	# prompt extenson for cmd.exe;  its purpose is to emulate the power
+	# of UNIX shells (decent Tab-completion, persistent history, etc.)
 
 
-# Power Management
+## Power Management
 alias poweroff='sudo poweroff'
 alias reboot='sudo reboot'
 alias desligar='poweroff'			# _RECURSIVE_
 alias reiniciar='reboot'			# _RECURSIVE_
 
 
-# Games
+## Games
 alias tetris='vitetris'				# _DEPEND_(vitetris)
 alias matrix='cmatrix'				# _DEPEND_(cmatrix)
 
 
-# Network
+## Network
 alias wifi="wicd-curses"			# _DEPEND_(wicd)
 
 
-# Useful commands in prompt
+## Useful commands in prompt
 alias nada='dd if=/dev/zero of=/dev/null'	# Does nothing
 alias view='vimpager '				# _DEPEND_(vimpager)
 function hist {

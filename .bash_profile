@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# ~/.bash_profile
+# /.bash_profile
 #
 
 # 1. Shell's Term
@@ -70,7 +70,7 @@ resetc
 # unset ACEITA
 
 
-# Carregar .bashrc
+# 5. Run .bashrc
 # ==============================================================================
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc

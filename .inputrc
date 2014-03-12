@@ -1,12 +1,67 @@
-"\e[A": history-search-backward
-"\e[B": history-search-forward
-"\e[C": forward-char
-"\e[D": backward-char 
-"\e[1~": beginning-of-line
-"\e[4~": end-of-line
-"\e[7~": beginning-of-line
-"\e[8~": end-of-line
-"\eOH": beginning-of-line
-"\eOF": end-of-line
-"\e[H": beginning-of-line
-"\e[F": end-of-line
+# ~/.inputrc
+# ==============================================================================
+# Use C-R todo backward search in history and C-S for forward search.
+# C-J terminate an incremental search.
+# C-G aborta a search and restore the original line
+#
+
+
+# 1. Variables setting
+# ==============================================================================
+
+## Display colored and visible stats of filetype at completion
+set colored-stats On
+set visible-stats On
+
+## Ignore case at completion
+set completion-ignore-case On
+
+## Treats hyphens (-) and underscores (_) as equivalent when performing case-insensitive filename completion
+set completion-map-case On
+
+## Unlimited history
+set history-size -1
+
+## Improve menu completion
+set menu-complete-display-prefix On
+set completion-query-items -1
+
+
+# 2. General Binding Commands (emacs mode and vi-insert mode)
+# ==============================================================================
+# Bindings are seted literally. To write a literal character uses C-V keybinding
+
+## Commands for Moving
+"\e[1~":    beginning-of-line
+"\e[4~":    end-of-line
+"\e[C":     forward-char
+"\e[D":     backward-char
+"M-\e[C":   forward-word
+"M-\e[D":   backward-word
+"M-RETURN": redraw-current-line
+
+## Commands for Manipulating the History
+"[5~":    beginning-of-history
+"[6~":    end-of-history
+"\e[A":     history-search-backward
+"\e[B":     history-search-forward
+
+## Commands for Changing Text
+"[3~":   forward-backward-delete-char
+
+## Killing and Yanking
+"C-K":      kill-line
+"C-U":      backward-kill-line
+"M-[3~":  kill-word
+"M-":     backward-kill-word
+"C-P":      copy-region-as-kill
+
+## Completing
+"[2~":    possible-completions
+"	":  menu-complete
+"[Z":     menu-complete-backward
+
+## Miscellaneous
+"M-U":      undo
+"M-R":      revert-line
+

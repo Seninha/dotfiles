@@ -27,7 +27,7 @@ File List
 | .bash_profile | Configuration of login shells. It doesn't have much stuff.                                                                         |
 | .tmux.conf    | Configuration for tmux, the terminal multiplexer. I'm working on this  file                                                        |
 | .inputrc      | Keyvoard mapping for Readline (the input-related library used by bash)                                                             |
-| .vimrc        | Configuration for vim. It has a lot of stuff and plugins managed by[Vundle][]                                                      |
+| .vimrc        | Configuration for vim. It has a lot of stuff and plugins managed by [Vundle][]                                                     |
 
 [Vundle]: https://github.com/gmarik/Vundle.vim
 
