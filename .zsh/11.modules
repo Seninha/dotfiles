@@ -1,0 +1,7 @@
+#! /bin/zsh
+
+# Load modules
+
+zmodload -a colors
+zmodload -a autocomplete
+zmodload -a complist

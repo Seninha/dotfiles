@@ -1,0 +1,38 @@
+
+bindkey -v
+
+## History Movement
+bindkey "[5~"		beginning-of-history		# PGUP
+bindkey "[6~"		end-of-history			# PGDOWN
+bindkey "[A"		up-line-or-search		# UP
+bindkey "[B"		down-line-or-search		# DOWN
+bindkey ""	history-incremental-search-backward	# C-R
+bindkey "\M-OD"	backward-word			# M-LEFT
+bindkey "\M-OC"	forward-word			# M-RIGHT
+
+## Line Movement
+bindkey "[1~"		beginning-of-line		# HOME
+bindkey "[4~"		end-of-line			# END
+
+## Modifying Text
+bindkey ""		backward-delete-char		# BACKSPACE
+bindkey "\M"		backward-delete-word		# M-BACKSPACE
+bindkey "[3~"		delete-char			# DELETE
+bindkey "\M[3~"	delete-word			# M-DELETE
+bindkey ""		backward-kill-line		# C-U
+bindkey ""		kill-line			# C-K
+bindkey "\M-'"		quote-line			# M-'
+bindkey '\M-"'		quote-region			# M-"
+bindkey "\M-#"		pound-insert			# M-#
+
+## Completion
+bindkey "	"	menu-complete			# TAB
+bindkey "[Z"		reverse-menu-complete		# M-TAB
+bindkey "[2~"		list-choices			# INSERT
+bindkey " "		magic-space			# SPACE
+
+
+bindkey -a "/" vi-history-search-backward
+bindkey -a "?" vi-history-search-forward
+bindkey -a "n" vi-repeat-search
+bindkey -a "N" vi-rev-repeat-search
