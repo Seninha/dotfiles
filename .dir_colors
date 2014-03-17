@@ -1,0 +1,472 @@
+# ~/.dir_colors
+# ==============================================================================
+#
+# Configuration  file for  dircolors,  a utility to help  setting the  LS_COLORS
+# environment variable used by GNU ls with the --color option.
+#
+# If you use Vim,  I recomend using the plugin "vim-coloresque", that highlights
+# the color-sequence string with the setted color.
+#
+
+COLOR tty			# When doing colorization
+EIGHTBIT yes			# Enable eight-bit ISO 8859 characters
+
+## Options passed to ls command
+OPTIONS --color=auto --group-directories-first --quoting-style=shell -f -h
+
+
+# Colorizable terminals
+# ==============================================================================
+
+TERM Eterm
+TERM ansi
+TERM color-xterm
+TERM con132x25
+TERM con132x30
+TERM con132x43
+TERM con132x60
+TERM con80x25
+TERM con80x28
+TERM con80x30
+TERM con80x43
+TERM con80x50
+TERM con80x60
+TERM cons25
+TERM console
+TERM cygwin
+TERM dtterm
+TERM gnome
+TERM gnome-256color
+TERM konsole
+TERM kterm
+TERM linux
+TERM linux-c
+TERM mach-color
+TERM mlterm
+TERM putty
+TERM rxvt
+TERM rxvt-cygwin
+TERM rxvt-cygwin-native
+TERM rxvt-unicode
+TERM screen
+TERM screen-bce
+TERM screen-w
+TERM screen.linux
+TERM vt100
+TERM xterm
+TERM xterm-256color
+TERM xterm-color
+TERM xterm-debian
+
+
+# Basic File Types Color Settings
+# ==============================================================================
+#
+# Color Sequence strings consists  of one or more of the following numeric codes
+# separated by semi-colons (;):
+#
+# - Attribute Codes:
+#     00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
+# 
+# - Foreground Color Codes:
+#     30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
+#
+# - Background Color Codes:
+#     40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+#
+
+NORMAL   00		# Global Default
+FILE     00		# Normal File
+DIR      01;34		# directory
+LINK     01;36		# Symbolic Link
+FIFO     01;35		# Pipe
+SOCK     01;35		# Socket
+DOOR     01;35		# Door
+BLK      40;33;01	# Block Device Driver
+CHR      40;33;01	# Character Device Driver
+ORPHAN   01;05;37;41	# Orphaned Syminks
+MISSING  01;05;37;41	# Orphaned Symlinks and the files they point to
+EXEC     01;32		# Executable Files
+
+
+# By Extension Color Settings
+# ==============================================================================
+
+
+## Binary Files
+*.BIN    01;30;47
+*.bin    01;30;47
+*.DAT    01;30;47
+*.dat    01;30;47
+*.DB     01;30;47
+*.db     01;30;47
+*.FIG    01;30;47
+*.fig    01;30;47
+*.HDU    01;30;47
+*.hdu    01;30;47
+*.LZM    01;30;47
+*.lzm    01;30;47
+*.MAT    01;30;47
+*.mat    01;30;47
+*.MFL    01;30;47
+*.mfl    01;30;47
+*.MPH    01;30;47
+*.mph    01;30;47
+*.RDATA  01;30;47
+*.RData  01;30;47
+*.RDP    01;30;47
+*.rdp    01;30;47
+*.RFU    01;30;47
+*.rfu    01;30;47
+*.SIG    01;30;47
+*.sig    01;30;47
+*.SQLITE 01;30;47
+*.sqlite 01;30;47
+*.SQLITEDB 01;30;47
+*.sqlitedb 01;30;47
+*.TORRENT 01;30;47
+*.torrent 01;30;47
+*.XAUTHORITY 01;30;47
+*.Xauthority 01;30;47
+
+
+## Executables / Libraries
+*.BAT    01;32
+*.bat    01;32
+*.BTM    01;32
+*.btm    01;32
+*.CMD    01;32
+*.cmd    01;32
+*.COM    01;32
+*.com    01;32
+*.CSH    01;32
+*.csh    01;32
+*.DLL    01;32
+*.dll    01;32
+*.EL5    01;32
+*.el5    01;32
+*.EXE    01;32
+*.exe    01;32
+*.KERNEL 01;32
+*.kernel 01;32
+*.MSI    01;32
+*.msi    01;32
+*.MSU    01;32
+*.msu    01;32
+*.RUN    01;32
+*.run    01;32
+*.SH     01;32
+*.sh     01;32
+*.SO     01;32
+*.so     01;32
+
+
+## Plaintext source files
+*.BAT    00;32
+*.bat    00;32
+*.C      00;32
+*.c      00;32
+*.CC     00;32
+*.cc     00;32
+*.ERB    00;32
+*.erb    00;32
+*.H      00;32
+*.h      00;32
+*.JS     00;32
+*.js     00;32
+*.LUA    00;32
+*.lua    00;32
+*.M      00;32
+*.m      00;32
+*.MK     00;32
+*.mk     00;32
+*.NSE    00;32
+*.nse    00;32
+*.PHP    00;32
+*.php    00;32
+*.POV    00;32
+*.pov    00;32
+*.PRJ    00;32
+*.prj    00;32
+*.PY     00;32
+*.py     00;32
+*.R      00;32
+*.r      00;32
+*.RB     00;32
+*.rb     00;32
+*.SH     00;32
+*.sh     00;32
+*.VBS    00;32
+*.vbs    00;32
+*Makefile 01;37;42
+*README  01;37;42
+*README.md  01;37;42
+*TODO    01;37;42
+
+
+## Archives, Disk Images and Compressed
+*.7Z     00;31
+*.7z     00;31
+*.ACE    00;31
+*.ace    00;31
+*.ARJ    00;31
+*.arj    00;31
+*.BZ     00;31
+*.bz     00;31
+*.BZ2    00;31
+*.bz2    00;31
+*.CPIO   00;31
+*.cpio   00;31
+*.DEB    00;31
+*.deb    00;31
+*.DMG    00;31
+*.dmg    00;31
+*.GZ     00;31
+*.gz     00;31
+*.IMG    00;31
+*.img    00;31
+*.ISO    00;31
+*.iso    00;31
+*.JAR    00;31
+*.jar    00;31
+*.LZH    00;31
+*.lzh    00;31
+*.MBR    00;31
+*.mbr    00;31
+*.RAR    00;31
+*.rar    00;31
+*.RPM    00;31
+*.rpm    00;31
+*.RZ     00;31
+*.rz     00;31
+*.TAR    00;31
+*.tar    00;31
+*.TAZ    00;31
+*.taz    00;31
+*.TBZ2   00;31
+*.tbz2   00;31
+*.TGZ    00;31
+*.tgz    00;31
+*.TZ     00;31
+*.tz     00;31
+*.WIM    00;31
+*.wim    00;31
+*.XPI    00;31
+*.xpi    00;31
+*.Z      00;31
+*.Z      00;31
+*.Z      00;31
+*.z      00;31
+*.ZIP    00;31
+*.zip    00;31
+*.ZOO    00;31
+*.zoo    00;31
+
+
+## Media formats (images)
+*.BMP    00;36
+*.bmp    00;36
+*.GIF    00;36
+*.gif    00;36
+*.ICO    00;36
+*.ico    00;36
+*.JPE    00;36
+*.jpe    00;36
+*.JPEG   00;36
+*.jpeg   00;36
+*.JPG    00;36
+*.jpg    00;36
+*.MNG    00;36
+*.mng    00;36
+*.PBM    00;36
+*.pbm    00;36
+*.PCX    00;36
+*.pcx    00;36
+*.PGM    00;36
+*.pgm    00;36
+*.PNG    00;36
+*.png    00;36
+*.PPM    00;36
+*.ppm    00;36
+*.PSD    00;36
+*.psd    00;36
+*.SVG    00;36
+*.svg    00;36
+*.TGA    00;36
+*.tga    00;36
+*.TIF    00;36
+*.tif    00;36
+*.TIFF   00;36
+*.tiff   00;36
+*.XBM    00;36
+*.xbm    00;36
+*.XPM    00;36
+*.xpm    00;36
+
+
+## Media formats (videos)
+*.ASF    00;36
+*.asf    00;36
+*.AVI    00;36
+*.avi    00;36
+*.DL     00;36
+*.dl     00;36
+*.FLC    00;36
+*.flc    00;36
+*.FLI    00;36
+*.fli    00;36
+*.GL     00;36
+*.gl     00;36
+*.M2V    00;36
+*.m2v    00;36
+*.M4V    00;36
+*.m4v    00;36
+*.MKV    00;36
+*.mkv    00;36
+*.MOV    00;36
+*.mov    00;36
+*.MP4    00;36
+*.mp4    00;36
+*.MP4V   00;36
+*.mp4v   00;36
+*.MPEG   00;36
+*.mpeg   00;36
+*.MPG    00;36
+*.mpg    00;36
+*.NUV    00;36
+*.nuv    00;36
+*.OGM    00;36
+*.ogm    00;36
+*.QT     00;36
+*.qt     00;36
+*.RM     00;36
+*.rm     00;36
+*.RMVB   00;36
+*.rmvb   00;36
+*.VOB    00;36
+*.vob    00;36
+*.WMV    00;36
+*.wmv    00;36
+*.XCF    00;36
+*.xcf    00;36
+*.XWD    00;36
+*.xwd    00;36
+*.YUV    00;36
+*.yuv    00;36
+
+
+## Media formats (audio)
+*.AAC    00;36
+*.aac    00;36
+*.AU     00;36
+*.au     00;36
+*.FLAC   00;36
+*.flac   00;36
+*.MID    00;36
+*.mid    00;36
+*.MIDI   00;36
+*.midi   00;36
+*.MKA    00;36
+*.mka    00;36
+*.MP3    00;36
+*.mp3    00;36
+*.MPC    00;36
+*.mpc    00;36
+*.OGG    00;36
+*.ogg    00;36
+*.RA     00;36
+*.ra     00;36
+*.WAV    00;36
+*.wav    00;36
+
+
+## Binary document files
+*.DOC    00;33
+*.doc    00;33
+*.DOCX   00;33
+*.docx   00;33
+*.odg    00;33
+*.ODG    00;33
+*.ODT    00;33
+*.odt    00;33
+*.PDF    00;33
+*.pdf    00;33
+*.PPT    00;33
+*.ppt    00;33
+*.PPTX   00;33
+*.pptx   00;33
+*.PS     00;33
+*.ps     00;33
+*.XLS    00;33
+*.xls    00;33
+*.XLSX   00;33
+*.xlsx   00;33
+
+
+## Plaintext document files
+*.BIB    00;33
+*.bib    00;33
+*.CSS    00;33
+*.css    00;33
+*.EML    00;33
+*.eml    00;33
+*.HTM    00;33
+*.htm    00;33
+*.HTML   00;33
+*.html   00;33
+*.TEX    00;33
+*.tex    00;33
+*.TXT    00;33
+*.txt    00;33
+*.XML    00;33
+*.xml    00;33
+*.XSL    00;33
+*.xsl    00;33
+
+
+## Plaintext data files
+*.allow  00;33
+*.bash_history 00;33
+*.bash_logout 00;33
+*.bash_profile 00;33
+*.bashrc 00;33
+*.cfg    00;33
+*.conf   00;33
+*.config 00;33
+*.crt    00;33
+*.csv    00;33
+*.deny   00;33
+*.desktop 00;33
+*.diff   00;33
+*.dir_colors 00;33
+*.dmrc   00;33
+*.gan    00;33
+*.hex    00;33
+*.ics    00;33
+*.inc    00;33
+*.ini    00;33
+*.inputrc 00;33
+*.irbrc  00;33
+*.json   00;33
+*.kderc  00;33
+*.log    00;33
+*.m3u    00;33
+*.m3u8   00;33
+*.md     00;33
+*.md5    00;33
+*.panic  00;33
+*.patch  00;33
+*.pinepw 00;33
+*.pinerc 00;33
+*.rc     00;33
+*.reg    00;33
+*.screenrc 00;33
+*.spx    00;33
+*.url    00;33
+*.viminfo 00;33
+*.vimperatorrc 00;33
+*.vimrc  00;33
+*.xscreensaver 00;33
+*.yml    00;33
+*.zshrc  00;33
+*.zshrc  00;33

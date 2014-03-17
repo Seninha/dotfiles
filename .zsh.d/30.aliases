@@ -1,10 +1,7 @@
-#!/bin/bash
+#!/usr/bin/zsh
 #
-# ~/.bash/alias
+# ZSH alias
 # ==============================================================================
-#
-# Comment Flags
-# -------------
 #
 # A comment may contain the following strings that flags the commented line:
 #
@@ -15,12 +12,27 @@
 #                is mentioned in parentheses.
 #
 
+
+# Suffix aliases (writing a file name makes zsh opening it in a command)
+# ==============================================================================
+
+## Misc
+alias -s exe=wine
+
+## Vim 
 alias -s txt=vim
 alias -s c=vim
 alias -s sh=vim
 alias -s tex=vim
 alias -s py=vim
+
+## Internet Browser
 alias -s html=firefox
+alias -s com=firefox
+alias -s org=firefox
+alias -s net=firefox
+alias -s edu=firefox
+
 
 # Output Improvement 
 # ==============================================================================
@@ -56,9 +68,10 @@ alias info='pinfo'				# _DEPEND_(pinfo)
 alias grep='egrep'				# _RECURSIVE_
 alias more='less'				# _DEPEND_(less)
 alias nano='nano -w'
-alias pacman='yaourt --noconfirm'		# _DEPEND_(yaourt)
-alias sudo='sudo '				# Makes sudo suports alias expansion ;-)
+alias pacman='yaourt'				# _DEPEND_(yaourt)
+alias sudo='sudo '				# Makes sudo suports alias expansion ;-) _DEPEND_(sudo)
 alias tmux='unset TMUX && tmux'			# _DEPEND_(tmux)
+alias cat='vimcat'				# _DEPEND_(vimcat)
 
 
 # File Management (mainly security changes)

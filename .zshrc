@@ -11,18 +11,20 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+eval `dircolors .dir_colors`
 
-# Required Files
+
+# Plugins Loading
 # ==============================================================================
 #
-# Zsh is awesome,  you can do anything on it!  But comparing it  to other shells
-# like Bash, most of Zsh features aren't enabled by default.
+# This section loads  recursively all files stored  in the directory  defined by
+# the variable $_ZSHDIR that DOES NOT start with a dot or "README" nor end with:
+#     - ~
+#     - .bak
+#     - .md
+#     - .sample
 #
-# For example, the history storing isn't  setted by default! Because of that fact
-# the .zshrc becomes MUCH longer. So I decide to split it into several files.
-#
-#
-# Here's a overview of files stored in ~/.zsh/
+# Here's a overview of files stored in $_ZSHDIR
 #
 # 10.options      Set and unset zsh options
 # 11.modules      Load zsh modules
@@ -31,22 +33,26 @@
 # 90.bindkeys     Set keyboard bindkeys
 # 99.prompt       Define a custom prompt
 #
-# You can change the  number suffix of files,  becaus these files don't depends
+# You can change the  number suffix of files, because these files don't depends
 # on each other. But don't do it because they're numbered in a logic fashion...
 
+_ZSHDIR=".zsh.d"
+_sourceDir=$(cd $(dirname $(echo $0 | cut -d' ' -f 1) 2>/dev/null) && pwd)
+[[ -d $_sourceDir ]] || _sourceDir=$HOME
+_sourceDir=$(echo ${_sourceDir}/${_ZSHDIR}/** | tr ' ' '\n' | grep -v -i \
+	-e '.sample$' \
+	-e '.bak$' \
+	-e '.md$' \
+	-e '~$' \
+	-e '^\.' \
+	-e '^README' \
+	)
 
-## Source each file in ~/.zsh/ in alphanumeric order
-for config_file in $(/usr/bin/ls ~/.zsh | sort); do
-	. ~/.zsh/$config_file
+for _sourceFile in ${(f)_sourceDir}; do
+	source $_sourceFile
 done
 
-
-
-# Autoloads
-# ==============================================================================
-autoload -U compinit
-compinit
-zmodload zsh/complist	# Initiate Complist
+unset _sourceDir _sourceFile _ZSHDIR
 
 
 # Programs Run at Login Time
@@ -71,11 +77,9 @@ fi
 view ~/.config/elos/20*/10*
 clear
 
-# Funções ZZ (www.funcoeszz.net)
-export ZZOFF=""  # desligue funcoes indesejadas
-export ZZPATH="/usr/bin/funcoeszz"  # script
-source "$ZZPATH"
-
 # Show a random awesome frase
 fortune 90% brasil 5% linux 5% linuxcookie | cowsay -f tux
 
+# Instalacao das Funcoes ZZ (www.funcoeszz.net)
+export ZZPATH=/usr/bin/funcoeszz
+source /home/lucas/.zzzshrc

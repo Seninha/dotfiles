@@ -1,11 +1,17 @@
+#!/usr/bin/zsh
+#
+# ZSH bindkeys
+# ==============================================================================
+#
+# This file contains setting of ZSH keyboard (VIM-LIKE) bindkeys
 
 bindkey -v
 
 ## History Movement
 bindkey "[5~"		beginning-of-history		# PGUP
 bindkey "[6~"		end-of-history			# PGDOWN
-bindkey "[A"		up-line-or-search		# UP
-bindkey "[B"		down-line-or-search		# DOWN
+bindkey "[A"	history-beginning-search-backward	# UP
+bindkey "[B"	history-beginning-search-forward	# DOWN
 bindkey ""	history-incremental-search-backward	# C-R
 bindkey "\M-OD"	backward-word			# M-LEFT
 bindkey "\M-OC"	forward-word			# M-RIGHT

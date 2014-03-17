@@ -1,6 +1,6 @@
-#!/bin/zsh
+#!/usr/bin/zsh
 #
-# ~/.zsh_prompt
+# ZSH_prompt
 # =============================================================================
 #
 # This file creates a modular Prompt made with "blocks" of variables.
@@ -32,7 +32,7 @@ _JOBS="%(0j..( %(1j.%j job.%j jobs)%))"
 _WHO="%n@%m"
 _TIME="%D{%K:%M}"
 _DIR="%~ [$(ls | wc -l) arquivos]"
-_CMD="%!%# "
+_CMD="%i%(!.#.$) "
 
 
 # Prompt Itself
