@@ -4,37 +4,63 @@ Seninha's Config files
 Some config  files related to `bash` and `vim` that  provides a nice environment
 to terminal.
 
+These files were build based in some rules:
+
+- The files use or implement less variables as possible for controlling the
+behaviour of the bash/zsh. Every behaviour must be setted using builtin commands,
+
+- The files are well commented using a comment syntax similar to Markdown.
+
+- The files' content are separeted by logical blocks of code
+
 Here's a preview of my bash prompt:
 
 ![Seninha's Bash Prompt](http://seninha.net/stuff/prompt.png)
 
 
-Warning
--------
+Warning!
+--------
 
-The files in this repository are highly vim-oriented, git-oriented and myself-oriented,
-so if you don't use vim nor git and if you aren't me, you must edit this file.
+The files in this repository are highly vim-oriented and myself-oriented.
+So if you don't use vim and if you aren't me, you must edit these file.
 
 
 File List
 ---------
 
+### ZSH Files ###
+
+| Filename                | Description                                                                   |
+|-------------------------|-------------------------------------------------------------------------------|
+| .zshrc                  | Zsh configuration of interactive shlles.                                      |
+| .zsh.d/                 | Directory that contains zsh scripts to be loaded by .zshrc                    |
+| .zsh.d/aliases.zsh      | Aliases and Functions. Contains information about requering external commands |
+| .zsh.d/antigen.zsh      | Implement antigen, a plugins management function                              |
+| .zsh.d/bindkeys.zsh     | VIM-LIKE zsh bindkeys                                                         |
+| .zsh.d/completion.zsh   | Menu completion styles                                                        |
+| .zsh.d/envvars.zsh      | Set some environment variables                                                |
+| .zsh.d/modules.zsh      | Load zsh modules                                                              |
+| .zsh.d/options.zsh      | Set and unset zsh options                                                     |
+| .zsh.d/prompt.zsh       | An AMAZING Prompt that informs how many files you have in the current dir, the current branch, the current branch status and MORE! |
+
+
+### Bash Files ###
+
 | Filename      | Description                                                            |
 |---------------|------------------------------------------------------------------------|
 | .bashrc       | Configuration of interactive shells. It contains the shell options, environment variables, programs run at login time and more.    |
-| .bash_alias   | Aliases and Functions. Contains information if the alias requires external programs or if it's an alias of an alias.               |
+| .bash_alias   | Aliases and Functions. Contains information about requering external commands           |
 | .bash_prompt  | An AMAZING Prompt that informs how many files you have in the current dir, the current branch, the current branch status and MORE! |
-| .bash_profile | Configuration of login shells. It doesn't have much stuff.                                                                         |
-| .tmux.conf    | Configuration for tmux, the terminal multiplexer. I'm working on this  file                                                        |
-| .inputrc      | Keyvoard mapping for Readline (the input-related library used by bash)                                                             |
-| .vimrc        | Configuration for vim. It has a lot of stuff and plugins managed by [Vundle][]                                                     |
+| .inputrc      | Keyboard mapping for Readline (the input-related library used by bash)                                                             |
+
+
+### Others Files ###
+
+| Filename      | Description                                                                    |
+|---------------|--------------------------------------------------------------------------------|
+| .dir_colors   | Configuration file for **dircolors(1)** used by GNU ls command                 |
+| .tmux.conf    | Configuration for tmux, the terminal multiplexer. I'm working on this file     |
+| .vimrc        | Configuration for Vim. It has a lot of stuff and plugins managed by [Vundle][] |
 
 [Vundle]: https://github.com/gmarik/Vundle.vim
 
-TODO
-----
-
-In a near future I will use `zsh` instead of `bash`. So there will be zsh config
-files in this repository!
-
-Even so the `bash` related files will continue to be maintained.
