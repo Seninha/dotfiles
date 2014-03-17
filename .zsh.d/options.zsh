@@ -15,10 +15,10 @@ setopt cdableVars		# If cd argument isn't a valid file, consider it as a variabl
 
 ## Completion Options
 # setopt alwaysLastPrompt	# Return to the last prompt after listing completions
-setopt alwaysToEnd		# Moves the cursor to the end of the completion
+unsetopt alwaysToEnd		# Moves the cursor to the end of the completion
 setopt autoMenu			# Show completion menu on successive tab press
 setopt autoParamSlash		# If complets a directory, add a slash innstead of a space
-setopt completeInWord		# Don't go to the end of the word if completion is started
+unsetopt completeInWord		# Don't go to the end of the word if completion is started
 unsetopt completeAliases
 setopt bashAutoList		# List choices on an ambiguous completion (like Bash)
 # setopt globComplete		# Use completion for patterns
