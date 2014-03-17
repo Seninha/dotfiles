@@ -126,7 +126,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-
 
 ## Formatting and mesages
 zstyle ':completion:*:*:*:*:*' verbose true				# Be verbose (show descriptions)
-zstyle ':completion:*:descriptions'   format "%B>> %d:%b"
+zstyle ':completion:*:descriptions'   format "%B%F{blue}>> %d:%b%f"
 zstyle ':completion:*:messages'       format '%d'
 zstyle ':completion:*:warnings'       format '%BNo matches for:$b %d'
 zstyle ':completion:*:corrections'    format '%B%d (errors: %e)%b'
