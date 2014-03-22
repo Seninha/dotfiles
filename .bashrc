@@ -51,7 +51,7 @@ shopt -s xpg_echo	# The echo command uses -e option by default
 # 2. Prompt
 # ==============================================================================
 
-[[ -f ./.bash_prompt ]] && . ./.bash_prompt
+. ./.bash_prompt
 
 ## Example:
 #
@@ -92,7 +92,7 @@ export WWW_HOME="http://seninha.net"
 # 4. Alias and Functions
 # ==============================================================================
 
-[[ -f ./.bash_alias ]] && . ./.bash_alias
+. ./.bash_alias
 
 
 # 5. Programs Run at Login Time

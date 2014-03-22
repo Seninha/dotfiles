@@ -11,43 +11,65 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-eval `dircolors .dir_colors`
-
-
-# Plugins Loading
-# ==============================================================================
-#
-# Loads recursively all files  in the directory defined by the variable $_ZSHDIR
-# that DOES NOT start with a dot and that DOES end with .zsh
-#
-# Here's a overview of files stored in $_ZSHDIR
-#
-# options.zsh      Set and unset zsh options
-# modules.zsh      Load zsh modules
-# envvars.zsh      Set environment variables
-# aliases.zsh      Set aliases and functions
-# bindkeys.zsh     Set keyboard bindkeys
-# prompt.zsh       Define a custom prompt
-
-_ZSHDIR=".zsh.d"
-_sourceDir=$(cd $(dirname $(echo $0 | cut -d' ' -f 1) 2>/dev/null) && pwd)
-[[ -d $_sourceDir ]] || _sourceDir=$HOME
-_sourceDir=$(echo ${_sourceDir}/${_ZSHDIR}/** | tr ' ' '\n' | grep -v -e '^\.' | grep -e '.zsh$')
-
-for _sourceFile in ${(f)_sourceDir}; do
-	source $_sourceFile
-done
-
-unset _sourceDir _sourceFile _ZSHDIR
+eval `dircolors ~/.dir_colors`
 
 
 # Antigen plugins management
 # ==============================================================================
 
-# antigen bundle zsh-users/zsh-syntax-highlighting
+. ~/.antigen.zsh
 
-# antigen apply
+antigen bundle zsh-users/zsh-syntax-highlighting	# Syntax highlighting
+antigen bundle Seninha/Epic-zsh-plugins aliases		# Epic aliases
+antigen bundle Seninha/Epic-zsh-plugins completion	# Epic completion
+antigen bundle Seninha/Epic-zsh-plugins envvars		# Epic envvars
+antigen bundle Seninha/Epic-zsh-plugins modules		# Epic modules
+antigen bundle Seninha/Epic-zsh-plugins options		# Epic options
+antigen bundle Seninha/Epic-zsh-plugins vimBindkeys	# Epic bindkeys
 
+antigen theme Seninha/Epic-zsh-theme epic		# An AWESOME theme
+
+
+antigen apply
+
+
+# Basic Configuration
+# ==============================================================================
+
+cmd () {
+	wine ~/.local/share/PyCmd/PyCmd.exe
+	reset
+}
+
+alias volume=alsamixer
+alias desligar=poweroff
+alias reiniciar=reboot
+
+
+# PATHs
+path=(~/bin ~/.local/bin)	# Personal bin dir
+path+=(/usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/games)
+path+=/opt/java/bin		# Java bin dir
+path+=./				# You can execute a command in current dir without prefixing "./"
+
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:~/bin:~/.local/lib"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/java/jre/lib/i386/"
+
+fpath=(/usr/share/zsh/site-functions $fpath)
+
+# Paging and Editing
+export PAGER="vimpager"
+export EDITOR="/usr/bin/vim"
+export VISUAL="/usr/bin/vim"
+NULLCMD=vimcat
+READNULLCMD=$PAGER
+
+# DEV
+export WINEDEBUG='fixme-all'
+export GCC_COLORS
+
+# Personal Variables
+export WWW_HOME="http://seninha.net"
 
 # Programs Run at Login Time
 # ==============================================================================
