@@ -22,7 +22,7 @@ eval `dircolors ~/.dir_colors`
 antigen bundle zsh-users/zsh-syntax-highlighting	# Syntax highlighting
 antigen bundle Seninha/Epic-zsh-plugins aliases		# Epic aliases
 antigen bundle Seninha/Epic-zsh-plugins completion	# Epic completion
-antigen bundle Seninha/Epic-zsh-plugins envvars		# Epic envvars
+antigen bundle Seninha/Epic-zsh-plugins history		# Epic history
 antigen bundle Seninha/Epic-zsh-plugins modules		# Epic modules
 antigen bundle Seninha/Epic-zsh-plugins options		# Epic options
 antigen bundle Seninha/Epic-zsh-plugins vimBindkeys	# Epic bindkeys

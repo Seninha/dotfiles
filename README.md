@@ -30,37 +30,29 @@ File List
 
 ### ZSH Files ###
 
-| Filename                | Description                                                                   |
-|-------------------------|-------------------------------------------------------------------------------|
-| .zshrc                  | Zsh configuration of interactive shlles.                                      |
-| .zsh.d/                 | Directory that contains zsh scripts to be loaded by .zshrc                    |
-| .zsh.d/aliases.zsh      | Aliases and Functions. Contains information about requering external commands |
-| .zsh.d/antigen.zsh      | Implement antigen, a plugins management function                              |
-| .zsh.d/bindkeys.zsh     | VIM-LIKE zsh bindkeys                                                         |
-| .zsh.d/completion.zsh   | Menu completion styles                                                        |
-| .zsh.d/envvars.zsh      | Set some environment variables                                                |
-| .zsh.d/modules.zsh      | Load zsh modules                                                              |
-| .zsh.d/options.zsh      | Set and unset zsh options                                                     |
-| .zsh.d/prompt.zsh       | An AMAZING Prompt that informs how many files you have in the current dir, the current branch, the current branch status and MORE! |
+ Filename                | Description
+-------------------------|-------------------------------------------------------------------------------
+ .zshrc                  | Zsh configuration of interactive shlles. It uses antigen to manage plugins
+ .antigen.zsh            | Plugins downloader and manager
 
 
 ### Bash Files ###
 
-| Filename      | Description                                                            |
-|---------------|------------------------------------------------------------------------|
-| .bashrc       | Configuration of interactive shells. It contains the shell options, environment variables, programs run at login time and more.    |
-| .bash_alias   | Aliases and Functions. Contains information about requering external commands           |
-| .bash_prompt  | An AMAZING Prompt that informs how many files you have in the current dir, the current branch, the current branch status and MORE! |
-| .inputrc      | Keyboard mapping for Readline (the input-related library used by bash)                                                             |
+ Filename      | Description
+---------------|------------------------------------------------------------------------
+ .bashrc       | Configuration of interactive shells. It contains the shell options, environment variables, programs run at login time and more.
+ .bash_alias   | Aliases and Functions. Contains information about requering external commands
+ .bash_prompt  | An AMAZING Prompt that informs how many files you have in the current dir, the current branch, the current branch status and MORE!
+ .inputrc      | Keyboard mapping for Readline (the input-related library used by bash)
 
 
 ### Others Files ###
 
-| Filename      | Description                                                                    |
-|---------------|--------------------------------------------------------------------------------|
-| .dir_colors   | Configuration file for **dircolors(1)** used by GNU ls command                 |
-| .tmux.conf    | Configuration for tmux, the terminal multiplexer. I'm working on this file     |
-| .vimrc        | Configuration for Vim. It has a lot of stuff and plugins managed by [Vundle][] |
+ Filename      | Description
+---------------|--------------------------------------------------------------------------------
+ .dir_colors   | Configuration file for **dircolors(1)** used by GNU ls command
+ .tmux.conf    | Configuration for tmux, the terminal multiplexer. I'm working on this file
+ .vimrc        | Configuration for Vim. It has a lot of stuff and plugins managed by [Vundle][]
 
 [Vundle]: https://github.com/gmarik/Vundle.vim
 
