@@ -5,6 +5,8 @@
 #
 # This .zshrc is  highly vim-oriented and myself-oriented,  so if you don't use
 # vim and if you aren't me, you must edit this file
+# 
+# COMMENT
 #
 
 # If not running interactively, don't do anything
