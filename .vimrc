@@ -29,6 +29,7 @@ filetype plugin on
 " 
 
 set rtp+=~/.vim/bundle/vundle
+set rtp+=~/.vim/bundle/neocomplete.vim
 call vundle#rc()
 
 "" Let Vundle manage Vundle
@@ -64,16 +65,20 @@ Bundle 'clones/vim-zsh'
 " Plugins Management
 " ------------------
 
-" let g:notes_directories = '~/documentos/organização/20'
+"" Vim-notes
+let g:notes_directories = ['/home/lucas/documentos/organização/20_afazeres/00_notas/']
+autocmd FileType notes set nofoldenable
+autocmd FileType notes hi String ctermfg=green cterm=Bold
 
 "" NeoComplete
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
-
-"" Airline
-let g:airline_powerline_fonts = 1
-let g:airline_theme = "molokai"
+autocmd FileType notes call neocomplete#initialize() | NeoCompleteDisable
+ 
+" "" Airline
+" let g:airline_powerline_fonts = 1
+" let g:airline_theme = "molokai"
 
 
 " User Interface
@@ -132,6 +137,12 @@ set omnifunc=syntaxcomplete#Complete	" Set the complete function
 
 " Key mapping
 " ==============================================================================
+
+"" Arguments
+map <C-N> :next<CR>
+map <C-P> :prev<CR>
+imap <C-N> <C-O>:next<CR>
+imap <C-P> <C-O>:prev<CR>
 
 "" Movement between windows
 imap <C-W> <C-O><C-W>

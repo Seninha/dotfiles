@@ -7,7 +7,6 @@
 # vim and if you aren't me, you must edit this file
 #
 
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -44,6 +43,9 @@ cmd () {
 alias volume=alsamixer
 alias desligar=poweroff
 alias reiniciar=reboot
+alias tetris=vitetris
+alias enpt='zztradutor en-pt '
+alias pten='zztradutor pt-en '
 
 
 # PATHs
