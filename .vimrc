@@ -197,5 +197,6 @@ autocmd BufNewFile *.[ch] 0read ~/skel/skel.c |
 			\ execute "normal 3gg" |
 			\ execute "read! ~/skel/date.sh" |
 			\ execute "normal 3gg$J2gg$" |
+			\ execute "normal 2ggA%" |
 			\ execute "normal Gdd11gg"
 
