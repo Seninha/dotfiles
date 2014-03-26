@@ -7,6 +7,7 @@
 # vim and if you aren't me, you must edit this file
 #
 
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
