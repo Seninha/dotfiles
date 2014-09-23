@@ -54,6 +54,8 @@ path=(~/bin ~/.local/bin)	# Personal bin dir
 path+=(/usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/games)
 path+=/opt/java/bin		# Java bin dir
 path+=./				# You can execute a command in current dir without prefixing "./"
+path+="`ruby -e 'puts Gem.user_dir'`/bin"
+QT_PLUGIN_PATH=/usr/lib32/kde4/plugins/:/home/lucas/.kde4/lib/kde4/plugins/:/usr/lib/kde4/plugins/
 
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:~/bin:~/.local/lib"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/java/jre/lib/i386/"
@@ -74,6 +76,28 @@ export GCC_COLORS
 # Personal Variables
 export WWW_HOME="http://seninha.net"
 
+function :t () {
+if [[ -n $* ]]; then
+    project=$(basename `pwd`);
+    tp=( $(\task _projects | grep $project) );
+
+    if [[ -n $tp ]]; then
+        \task "$@" project:$project
+    else
+        \task "$@"
+    fi
+else
+    \task
+fi
+}
+
+alias task=':t'
+alias week='task +WEEK next'
+alias month='task +MONTH next'
+alias calendar='task calendar && task +MONTH next'
+alias cal='task calendar && task +MONTH next'
+
+
 # Programs Run at Login Time
 # ==============================================================================
 #
@@ -81,20 +105,16 @@ export WWW_HOME="http://seninha.net"
 # ¡The following commands may be meaningless in a computer other than mine!
 #
 
-# Start tmux (requires tmux)
-if which tmux 2>&1 >/dev/null; then
-	# if no session is started, start a new session
-	test -z ${TMUX} && tmux && exit
-	
-	# # when quitting tmux, try to attach
-	while test -z ${TMUX}; do
-		tmux attach || break
-	done
-fi
-
-# Show daily routine
-view ~/.config/elos/20*/10*
-clear
+## Start tmux (requires tmux)
+# if which tmux 2>&1 >/dev/null; then
+#         # if no session is started, start a new session
+#         test -z ${TMUX} && tmux && exit
+#         
+#         # when quitting tmux, try to attach
+#         while test -z ${TMUX}; do
+#                 tmux attach || break
+#         done
+# fi
 
 # Show a random awesome frase
 fortune 90% brasil 5% linux 5% linuxcookie | cowsay -f tux

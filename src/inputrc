@@ -1,8 +1,8 @@
-# ~/.inputrc
+# ~/.inputrc - Configuration for Readline
 # ==============================================================================
-# Use C-R todo backward search in history and C-S for forward search.
-# C-J terminate an incremental search.
-# C-G aborta a search and restore the original line
+#
+# Readline is a library, used by bash, that provides a prompt, or a editing
+# interface for command line. `.inputrc` is the configuration file for Readline.
 #
 
 
