@@ -42,7 +42,7 @@ bkpfiles   = $(patsubst $(srcdir)/%,$(installdir)/.%,$(wildcard $(srcdir)/*))
 
 ## Top-Level Targets
 
-all: $(dotfiles) $(blddir)/.antigen.zsh $(blddir)/.vim/bundle/Vundle.vim
+all: $(dotfiles) $(blddir)/.antigen.zsh $(blddir)/.vim
 
 install: all
 	cp -R $(dotfiles) $(blddir)/.antigen.zsh $(blddir)/.vim $(installdir)
@@ -69,6 +69,5 @@ $(blddir)/.antigen.zsh:
 	git clone https://github.com/zsh-users/antigen $(tmpdir)/antigen
 	cp $(tmpdir)/antigen/antigen.zsh $(blddir)/.antigen.zsh
 
-$(blddir)/.vim/bundle/Vundle.vim:
-	mkdir -p $(blddir)/.vim/bundle/Vundle.vim
-	git clone https://github.com/gmarik/Vundle.vim.git $(blddir)/.vim/bundle/Vundle.vim
+$(blddir)/.vim:
+	git clone https://github.com/gmarik/Vundle.vim.git $(blddir)/.vim
