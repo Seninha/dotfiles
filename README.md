@@ -10,10 +10,6 @@ most of these files.
 Each dotfile is very simple and well documented, so don't be afraid to change
 them, even if you don't know their syntax.
 
-Here's a preview of my bash prompt:
-
-![Seninha's Bash Prompt](http://seninha.net/stuff/prompt.png)
-
 
 ## Features
 
@@ -28,8 +24,8 @@ For now, I have dotfiles for the following applications:
 
 And yes, I don't have .bashrc since I don't use bash anymore...
 
-[Antigen]:(https://github.com/zsh-users/antigen)
-[Vundle]:(https://github.com/gmarik/Vundle.vim) 
+[Antigen]: https://github.com/zsh-users/antigen
+[Vundle]:  https://github.com/gmarik/Vundle.vim 
 
 
 ## Installation
