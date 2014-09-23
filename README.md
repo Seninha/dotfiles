@@ -22,7 +22,7 @@ For now, I have dotfiles for the following applications:
  Readline    | Readline is a library, used by bash, that provides a prompt, or a editing interface for command line. `.inputrc` is the configuration file for Readline.
  Dircolors   | Dircolors is the tool used by `ls(1)` and other commands to determine the colors in which the filenames are to be displayed. `.dir_colors` is the configuration file for `dircolors`
 
-And yes, I don't have .bashrc since I don't use bash anymore...
+And yes, I don't have `.bashrc` since I don't use bash anymore...
 
 
 ## Installation
