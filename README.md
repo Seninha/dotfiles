@@ -50,3 +50,6 @@ and *Vundle* by itself:
 make install
 ```
 
+This command will make a backup of your original dotfiles into the `bkp/`
+directory. There is not a command for uninstall, so if you want to uninstall,
+just copy the files in `bkp/` back to your home directory.
