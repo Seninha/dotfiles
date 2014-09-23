@@ -45,7 +45,7 @@ bkpfiles   = $(patsubst $(srcdir)/%,$(installdir)/.%,$(wildcard $(srcdir)/*))
 all: $(dotfiles) $(blddir)/.antigen.zsh $(blddir)/.vim/bundle/Vundle.vim
 
 install: all
-	cp $(dotfiles) $(installdir)
+	cp $(blddir)/.* $(installdir)
 
 backup: dirs
 	cp -n $(bkpfiles) $(bkpdir)
