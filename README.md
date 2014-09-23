@@ -28,8 +28,8 @@ For now, I have dotfiles for the following applications:
 
 And yes, I don't have .bashrc since I don't use bash anymore...
 
-[Antigen](https://github.com/zsh-users/antigen)
-[Vundle](https://github.com/gmarik/Vundle.vim) 
+[Antigen]:(https://github.com/zsh-users/antigen)
+[Vundle]:(https://github.com/gmarik/Vundle.vim) 
 
 
 ## Installation
