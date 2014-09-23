@@ -46,7 +46,7 @@ yourself (they are responsible for managing the plugins in `.zshrc` and
 Just run the following command, it will copy the dotfiles and intall *Antigen*
 and *Vundle* by itself:
 
-    ```
-    make install
-    ```
+```shell
+make install
+```
 
